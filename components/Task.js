@@ -1,21 +1,28 @@
 import React from "react";
 import {StyleSheet, View, Text, TouchableOpacity} from "react-native";
 
-const Task = ({text}) => {
+const Task = ({text, completeTask, id}) => {
     return (
         <View style={styles.container}>
-            <View>
-                <TouchableOpacity style={styles.square}/>
+            <View style={styles.itemLeft}>
+                <TouchableOpacity style={styles.square} onPress={() => completeTask(id)}/>
+                <Text style={styles.taskText}>{text}</Text>
             </View>
-            <Text style={styles.taskText}>{text}</Text>
+            <View style={styles.circular}>
+
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         backgroundColor: '#fff',
         paddingVertical: 20,
+        paddingHorizontal: 15,
         marginBottom: 20,
         shadowColor: "#000",
         shadowOffset: {
@@ -27,13 +34,27 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
     },
     taskText: {
-        paddingLeft: 15
+        paddingLeft: 15,
+        maxWidth: '80%'
     },
     square: {
         width: 24,
         height: 24,
         backgroundColor: '#55BCF6',
+        opacity: 0.4,
         borderRadius: 5
+    },
+    itemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: "wrap"
+    },
+    circular: {
+        width: 12,
+        height: 12,
+        borderWidth: 3,
+        borderRadius: 5,
+        borderColor: '#55BCF6'
     }
 })
 
